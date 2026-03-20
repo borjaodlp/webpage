@@ -1,0 +1,555 @@
+/* Modern styles for the reference site */
+:root {
+    --primary-green: #2d5e4e;
+    --light-green: #4a8f7a;
+    --accent-green: #6db5a0;
+    --bg-light: #f5f9f7;
+    --text-dark: #2c3e50;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--text-dark);
+    /* We render the page background via the fixed .cover-image element so the body itself is transparent. */
+    background: transparent;
+    min-height: 100vh;
+}
+
+.body-index {
+    min-height: 100vh;
+    margin: 0;
+    /* This puts the image on the body itself */
+    background: linear-gradient(rgba(245, 249, 247, 0.8), rgba(245, 249, 247, 0.8)), 
+                url('src/ruta_ason.jpeg');
+    background-size: cover;
+    background-position: top center;
+    background-attachment: scroll; /* This makes it move when you scroll */
+    background-repeat: no-repeat;
+}
+
+.cover-image-novela {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(rgba(245, 249, 247, 0.8), rgba(245, 249, 247, 0.8)), url('src/autor_fantasia.jpg');
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
+  /* Puts it "under" everything */
+}
+
+.cover-image-boletin {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(rgba(245, 249, 247, 0.8), rgba(245, 249, 247, 0.8)), url('src/fondo_boletin.jpg');
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
+  /* Puts it "under" everything */
+}
+
+.cover-image-franciscoh {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(rgba(245, 249, 247, 0.8), rgba(245, 249, 247, 0.8)), url('src/fondo_cartas.jpg');
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
+  /* Puts it "under" everything */
+}
+
+/* Sticky Navigation */
+header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: linear-gradient(135deg, var(--primary-green) 0%, var(--light-green) 100%);
+    color: #fff;
+    padding: 1rem 2rem;
+    box-shadow: 0 4px 12px rgba(45, 94, 78, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    font-size: 2rem;
+    margin-bottom: 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    margin: 0;
+}
+
+/* Hamburger Toggle Button */
+.nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    z-index: 101;
+}
+
+.nav-toggle:hover {
+    opacity: 0.8;
+}
+
+header nav {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    overflow-x: auto;
+    padding: 0.5rem 0;
+}
+
+header nav::-webkit-scrollbar {
+    height: 4px;
+}
+
+header nav::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+}
+
+header nav::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 2px;
+}
+
+header nav::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.6);
+}
+
+/* Hide nav on small screens, show hamburger */
+@media (max-width: 768px) {
+    header {
+        padding: 1rem;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    header h1 {
+        font-size: 1.5rem;
+        flex: 1;
+    }
+
+    .nav-toggle {
+        display: block;
+    }
+
+    header nav {
+        order: 3;
+        flex-basis: 100%;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+        gap: 0;
+    }
+
+    header nav.active {
+        max-height: 500px;
+    }
+
+    header nav ul {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    header nav ul li {
+        width: 100%;
+    }
+
+    header nav a {
+        display: block;
+        padding: 1rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    nav a:hover {
+        transform: none;
+    }
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+nav li {
+    white-space: nowrap;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+nav a:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+/* Main Content */
+main {
+    flex: 1;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+main h1,
+main h2 {
+    color: var(--primary-green);
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+}
+
+/* Floating Card Container */
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.card-container-vertical {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.card, .card-index {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 8px 24px rgba(45, 94, 78, 0.12);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(74, 143, 122, 0.2);
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Specific for Index: Fixed height and scrollable text */
+.card-index {
+    height: 400px;
+}
+
+.card-index h3 {
+    margin-bottom: 0.75rem; /* Reduced top gap */
+}
+
+.card-index p:first-of-type {
+    flex: 1;
+    overflow-y: auto;
+    margin: 0;
+    padding-right: 5px;
+    line-height: 1.6;
+}
+
+/* Footer behavior only for the index version */
+.card-index .card-footer-text {
+    margin-top: auto;
+    padding-top: 0.75rem;
+}
+
+.card p:first-of-type::-webkit-scrollbar {
+    width: 4px;
+}
+.card p:first-of-type::-webkit-scrollbar-thumb {
+    background: var(--accent-green);
+    border-radius: 10px;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 36px rgba(45, 94, 78, 0.18);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.card h3 {
+    color: var(--primary-green);
+    margin: 0;
+    margin-bottom: 0.75rem; /* This is the gap ABOVE the text */
+    flex-shrink: 0;
+}
+
+.card-date {
+    font-size: 0.75rem;
+    color: #999;
+    white-space: nowrap;
+    margin-left: 1rem;
+    text-align: right;
+}
+
+.card-preview {
+    margin: 1rem auto;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.card-preview img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.card-preview-text {
+    font-size: 0.95rem;
+    color: #666;
+    line-height: 1.5;
+    max-height: 120px;
+    overflow-y: auto;
+    padding: 0.5rem;
+    background: rgba(74, 143, 122, 0.05);
+    border-radius: 6px;
+}
+
+.card-preview-text::-webkit-scrollbar {
+    width: 4px;
+}
+
+.card-preview-text::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 2px;
+}
+
+.card-preview-text::-webkit-scrollbar-thumb {
+    background: var(--accent-green);
+    border-radius: 2px;
+}
+
+.card-footer-text {
+    margin-top: auto;
+    color: #999;
+    font-size: 0.9rem;
+    padding-top: 1.5rem;
+    margin-top: 0.75rem; /* keep footer text spaced from content */
+}
+
+.card a, .card-index a , .card-disenho a {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--light-green), var(--accent-green));
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    align-self: flex-start;
+}
+
+.card a:hover {
+    background: linear-gradient(135deg, var(--primary-green), var(--light-green));
+    transform: translateX(4px);
+}
+
+/* List style for alternative layout */
+.list-item {
+    background: rgba(255, 255, 255, 0.95);
+    border-left: 4px solid var(--accent-green);
+    padding: 1.5rem;
+    margin: 1rem 0;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(45, 94, 78, 0.1);
+    transition: all 0.3s ease;
+}
+
+.list-item:hover {
+    transform: translateX(8px);
+    box-shadow: 0 8px 20px rgba(45, 94, 78, 0.15);
+}
+
+.list-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.list-item h3 {
+    color: var(--primary-green);
+    margin: 0;
+}
+
+.list-item-date {
+    font-size: 0.85rem;
+    color: #999;
+}
+
+/* Footer */
+footer {
+    background: var(--primary-green);
+    color: #fff;
+    text-align: center;
+    padding: 2rem;
+    margin-top: 4rem;
+    border-top: 2px solid var(--accent-green);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    main {
+        padding: 1rem;
+    }
+
+    .card-container {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    main h1,
+    main h2 {
+        font-size: 1.5rem;
+    }
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between; /* Pushes title left and button right */
+    align-items: center;           /* Perfectly aligns them vertically */
+    margin-bottom: 20px;           /* Adds space before the cards start */
+}
+
+.header-container-right {
+    display: flex;
+    justify-content: flex-end; /* Pushes buttons to the right */
+    gap: 1.5rem;               /* Adjust this value to make the space bigger or smaller */
+    margin-bottom: 2rem;       /* Space between buttons and content below */
+    width: 100%;
+}
+
+/* Keep your existing button styles below */
+.btn-colaborar {
+    display: inline-block;
+    background-color: var(--primary-green);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    font-family: sans-serif;
+}
+
+/* Keep your existing button styles below */
+.btn-franciscoh {
+    display: inline-block;
+    background-color: var(--primary-green);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    font-family: sans-serif;
+    align-self: center;
+}
+
+.requisitos-section {
+    background-color: var(--bg-light);
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 5px solid var(--primary-green);
+    margin: 20px 0;
+}
+
+.requisitos-lista {
+    list-style-type: none; /* We'll use custom bullets */
+    padding-left: 0;
+    color: var(--text-dark);
+    font-family: sans-serif;
+    line-height: 1.6;
+}
+
+.requisitos-lista li {
+    margin-bottom: 12px;
+    padding-left: 25px;
+    position: relative;
+}
+
+/* Custom bullet using your accent color */
+.requisitos-lista li::before {
+    content: "•";
+    color: var(--accent-green);
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+    font-size: 1.2rem;
+}
+
+.card-disenho {
+    /* Visuals from your existing style */
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 12px;
+    padding: 1.5rem; /* Adjust this to 2rem if you want even larger padding */
+    box-shadow: 0 8px 24px rgba(45, 94, 78, 0.12);
+    border: 1px solid rgba(74, 143, 122, 0.2);
+    backdrop-filter: blur(10px);
+    
+    /* The Width Fix */
+    display: flex;
+    flex-direction: column;
+    width: 100%;           /* Allows it to be responsive */
+    max-width: 350px;      /* Prevents the "stretching to page width" issue */
+    margin: 0 auto;        /* Centers the card in its grid/container cell */
+}
+
+.card-disenho h3 {
+    margin: 0;
+    /* 2. Gap below title */
+    margin-bottom: 1.5rem; 
+    color: var(--primary-green);
+}
+
+.card-disenho p:first-of-type {
+    flex: 1;
+    overflow-y: auto;
+    margin: 0; /* Removing individual margins to keep gaps consistent */
+    line-height: 1.6;
+    padding-right: 10px;
+}
+
+.card-disenho .card-footer-text {
+    margin-top: auto;
+    /* 3. Identical gap above the footer text */
+    padding-top: 1.5rem; 
+    /* 4. Gap below the footer text (above the button) */
+    margin-bottom: 1.5rem; 
+    color: #999;
+    font-size: 0.9rem;
+}
+
+.card-disenho a {
+    align-self: flex-start;
+}

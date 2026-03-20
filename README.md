@@ -1,82 +1,135 @@
 # Personal Reference Site para GitHub Pages
 
-Sitio moderno con navegación responsive, cards dinámicas y soporte para contenido multimedia.
+Sitio estático basado en HTML/CSS/JavaScript para mostrar proyectos, boletines e historias.
 
-## 📁 Estructura del Proyecto
+## 📁 Estructura actual del proyecto
 
 ```
-webpage_scratch/
-├── index.html              ← Página principal
-├── style.css               ← Estilos (tema verde, responsive)
-├── script.js               ← JavaScript para interactividad
-├── README.md              ← Este archivo
+(raíz del repositorio)
+├── global.js
+├── index.html                    ← Página principal de inicio
+├── style.css                     ← Estilos globales
+├── script.js                     ← Interactividad (menú, animaciones, etc.)
+├── README.md                     ← Documentación (este archivo)
 └── projects/
-    ├── boletines.html     ← Listado de boletines
-    ├── novelas.html       ← Listado de historias
-    ├── images/            ← Carpeta de imágenes
-    │   ├── boletin_plantilla.png
-    │   ├── boletin-01.png
-    │   ├── boletin-02.png
-    │   └── boletin-especial.png
-    ├── boletines/         ← Páginas individuales de boletines
-    │   ├── plantilla-boletin.html
-    │   ├── boletin-01.html
-    │   ├── boletin-02.html
-    │   └── boletin-especial.html
-    └── cronica_huracan/   ← Páginas individuales de historias
-        ├── cronica.html
-        ├── memorias-viaje.html
-        ├── ultimo-faro.html
-        └── confesiones-medianoche.html
+    ├── boletines.html            ← Página de lista de boletines
+    ├── novelas.html              ← Página de lista de novelas/historias
+    ├── franciscoh.html           ← Página de proyecto específico
+    ├── boletines/                ← Contenido de cada boletín
+    │   ├── boletin-001.html
+    │   ├── boletin-002.html
+    │   ├── boletin-003.html
+    │   ├── boletin-004.html
+    │   ├── boletin-005.html
+    │   ├── boletin-006.html
+    │   ├── boletin-007.html
+    │   ├── boletin-010.html
+    │   ├── boletin-011.html
+    │   ├── boletin-012.html
+    │   ├── boletin-especial.html
+    │   ├── colaboracion-boletin.html
+    │   └── plantilla-boletin.html
+    ├── cronica_huracan/
+    │   ├── cronica.html
+    │   ├── novela_1.html
+    │   ├── novela_2.html
+    │   └── sinopsis.html
+    └── fran-cis-coh/
+        ├── disenhos.html
+        ├── reglamento.html
+        └── disenhos/
+            ├── disenho_companhero.html
+            ├── disenho_complemento.html
+            ├── disenho_fran_cumbre.html
+            ├── disenho_fran.html
 ```
 
-## 🖼️ Añadir Imágenes
+> Nota: los archivos existentes pueden variar con los lanzamientos. Usa esta lista como referencia básica.
 
-### Rutas Correctas
+---
 
-Las imágenes deben colocarse en la carpeta `projects/images/`:
+## 🧪 Probar localmente
 
-```html
-<!-- En boletines.html (ubicado en projects/) -->
-<img src="images/mi-imagen.png" alt="Descripción">
+1. Clona o descarga el repositorio.
+2. Abre `index.html` en un navegador (doble clic o arrastrar al navegador).
+3. Prueba navegación, enlaces y carga de imágenes.
+4. Verifica que `style.css` y `script.js` estén referenciados correctamente con rutas relativas, especialmente en subcarpetas (`projects/*`).
 
-<!-- En boletines/plantilla-boletin.html (un nivel más profundo) -->
-<img src="../images/mi-imagen.png" alt="Descripción">
+### Alternativa local (servidor simple)
+
+- Con Python 3:
+
+```bash
+cd c:\webpage_git
+python -m http.server 8000
 ```
 
-### Formatos Recomendados
+Abrir: `http://localhost:8000`
 
-- **Previsualizaciones**: PNG o JPG (máx 200KB)
-- **Para pantallas**: Usar `object-fit: cover` para ajustar proporción
-- **Responsive**: Siempre incluir `width: 100%;` para adaptarse al dispositivo
+- Con Node.js (serve):
 
-### Ejemplo de Imagen Responsive
-
-```html
-<img src="images/boletin.png" 
-     alt="Boletín" 
-     style="width: 100%; height: 180px; object-fit: cover;">
+```bash
+npm install -g serve
+serve .
 ```
 
 ---
 
-## 📝 Tipos de Previsualizaciones
+## 🚀 Desplegar en GitHub Pages
 
-### 1. Previsualización con Imagen (para Boletines)
+### 1. Crear repositorio de GitHub
 
-```html
-<div class="card">
-    <div class="card-header">
-        <h3>Título del Boletín</h3>
-        <span class="card-date">8 Mar 2026</span>
-    </div>
-    <div class="card-preview">
-        <img src="images/boletin.png" alt="Boletín">
-    </div>
-    <p>Descripción breve...</p>
-    <a href="enlace.html">Ver Diseño</a>
-</div>
+- Opción A (página de usuario/organización): nombre del repo `yourusername.github.io`
+- Opción B (repo de proyecto): cualquier nombre, la URL será `https://yourusername.github.io/repo-name/`
+
+### 2. Subir contenido
+
+```bash
+git add .
+git commit -m "Deploy web personal"
+git push origin main
 ```
+
+### 3. Activar Pages en GitHub
+
+- En repo → Settings → Pages
+- Source: `main branch` (`/root`)
+- Guardar y esperar 1-2 min
+
+### 4. Verificar URL
+
+- Usuario: `https://yourusername.github.io/`
+- Proyecto: `https://yourusername.github.io/repo-name/`
+
+---
+
+## 🔍 Cambios frecuentes que revisar antes de deploy
+
+- Rutas de recursos en archivos dentro de carpetas (usa `../` según ubicación).
+- Existencia de todos los activos referenciados (`images/`, JS, CSS).
+- El sitemap/indice si lo usas manualmente.
+- Quitar comentarios personales o scripts de depuración temporales.
+
+---
+
+## ℹ️ Nota de pruebas automatizadas
+
+Este proyecto es un sitio estático simple sin tests automatizados configurados. Para añadir pruebas, puedes usar:
+
+- Cypress / Playwright para pruebas E2E de UI
+- ESLint / Stylelint para validación de calidad de código
+- GitHub Actions para automatizar build/test/despliegue
+
+---
+
+## ✅ Checklist rápido (Test + Deploy)
+
+- [ ] `index.html` abre sin 404
+- [ ] `style.css` aplica estilos
+- [ ] `script.js` carga sin errores en consola
+- [ ] Enlace `projects/boletines.html` funciona
+- [ ] En GitHub Pages, `index.html` responde en URL final
+- [ ] Fundamentos responsive están en mobile/desktop
 
 ### 2. Previsualización con Texto (para Historias)
 
